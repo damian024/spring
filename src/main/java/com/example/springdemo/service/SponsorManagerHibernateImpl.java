@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.shdemo.domain.Event;
-import com.example.shdemo.domain.Sponsor;
+import com.example.springdemo.domain.Event;
+import com.example.springdemo.domain.Sponsor;
 
 
 @Component
 @Transactional
-public class SponsorManagerHibernate{
+public class SponsorManagerHibernateImpl implements SponsorManager{
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -29,14 +29,14 @@ public class SponsorManagerHibernate{
 	@Override
 	public void addEvents(){
 		int i;
-		for(i=1;i<7;i++){
+		for(i=0;i<3;i++){
 			Event event = new Event();
 			String name = "event nr "+ i;
 			String about = "Jakis opis" + i;
 			Boolean charity =(i%2==0)? true: false;
-			event.setName(nazwa);
+			event.setName(name);
 			event.setAbout(about);
-			event.setcharity(charity);
+			event.setCharity(charity);
 			addEvent(event);
 		}		
 	}	
@@ -53,9 +53,9 @@ public class SponsorManagerHibernate{
 					String name = "event nr "+ i;
 					String about = "Jakis opis" + i;
 					Boolean charity =(i%2==0)? true: false;
-					event.setName(nazwa);
+					event.setName(name);
 					event.setAbout(about);
-					event.setcharity(charity);
+					event.setCharity(charity);
 					events.add(event);
 					addEvent(event);
 				}
@@ -63,10 +63,10 @@ public class SponsorManagerHibernate{
 				String name = "sponsor nr "+ i;
 				String about = "Jakis opis" + i;
 				String branch = (i%2==0) ? "car": "fuel";
-				sponsor.setName(nazwa);
+				sponsor.setName(name);
 				sponsor.setAbout(about);
-				sponsor.setBreanch(branch);
-				sponsor.setEvents(event);
+				sponsor.setBranch(branch);
+				sponsor.setEvents(events);
 				addSponsor(sponsor);
 			}	
 	}
@@ -110,7 +110,7 @@ public class SponsorManagerHibernate{
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Event> findEventByName(String name) {
-		return sessionFactory.getCurrentSession().getNamedQuery("event.byName").setInteger("name", name).list();
+		return sessionFactory.getCurrentSession().getNamedQuery("event.byName").setString("name", name).list();
 	}
 	
 	
@@ -141,13 +141,13 @@ public class SponsorManagerHibernate{
 		sponsor = (Sponsor) sessionFactory.getCurrentSession().get(Sponsor.class,
 				sponsor.getId());
 	// lazy loading here - try this code without (shallow) copying
-		List<Event> event = new ArrayList<Event>(sponsor.getEvents());
+		List<Event> events = new ArrayList<Event>(sponsor.getEvents());
 		return events;
 	}
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Sponsor> getAllESponsors() {
+	public List<Sponsor> getAllSponsors() {
 		return sessionFactory.getCurrentSession().getNamedQuery("sponsor.all")
 				.list();
 	}
@@ -160,7 +160,7 @@ public class SponsorManagerHibernate{
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Sponsor> findSponsorByBranch(String branch) {
-		return sessionFactory.getCurrentSession().getNamedQuery("sponsor.byBranch").setInteger("branch", branch).list();
+		return sessionFactory.getCurrentSession().getNamedQuery("sponsor.byBranch").setString("branch", branch).list();
 	}
 	
 	@Override
