@@ -1,29 +1,38 @@
 package com.example.springdemo.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@NamedQueries({
+		@NamedQuery(name = "events.charity", query = "Select e from Events e where e.charity = true")
+})
+
 public class Event {
-	private int id;
+	private Long id;
 	private String name;
 	private String about;
-	private int mainSponsor;
+	private Boolean charity:
 	
-	public Event(String name, String about, int mainSponsor)
-	{
-		this.name = name;
-		this.about = about;
-		this.mainSponsor = mainSponsor;
-	}
-	public Event(String name, String about)
-	{
-		this.name = name;
-		this.about = about;
-	}
-	public Event(){
-		
-	}
-	public int getId() {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -32,11 +41,11 @@ public class Event {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getMainSponsor() {
-		return mainSponsor;
+	public Boolean getCharity() {
+		return charity;
 	}
-	public void setMainSponsor(int sponsor) {
-		this.mainSponsor = sponsor;
+	public void setCharity(Boolean charity) {
+		this.charity = charity;
 	}
 	public String getAbout() {
 		return about;
@@ -44,7 +53,4 @@ public class Event {
 	public void setAbout(String about) {
 		this.about = about;
 	}
-	
-
-
 }
