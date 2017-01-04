@@ -1,4 +1,4 @@
-package com.example.jdbcdemo.domain;
+package com.example.springdemo.domain;
 
 public class Sponsor {
 	

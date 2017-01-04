@@ -1,4 +1,4 @@
-package com.example.jdbcdemo.domain;
+package com.example.springdemo.domain;
 
 public class Event {
 	private int id;
