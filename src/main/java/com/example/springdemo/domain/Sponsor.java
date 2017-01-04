@@ -22,7 +22,9 @@ public class Sponsor {
 	
 	@Entity
 	@NamedQueries({
-			@NamedQuery(name = "sponsor.branch", query = "Select s from Sponsor s where s.branch = :branch");
+			@NamedQuery(name = "sponsor.byBranch", query = "Select s from Sponsor s where s.branch = :branch");
+			@NamedQuery(name = "sponsor.all", query = "Select s from Sponsor s");
+			@NamedQuery(name = "sponsor.byId", query = "Select s from Sponsor s where s.id = :id"),
 	})
 	
 	@Id

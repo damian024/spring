@@ -17,7 +17,10 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "events.charity", query = "Select e from Events e where e.charity = true")
+		@NamedQuery(name = "events.charity", query = "Select e from Events e where e.charity = true");
+		@NamedQuery(name = "events.all", query = "Select e from Events e"),
+		@NamedQuery(name = "events.byId", query = "Select e from Events e where e.id = :id"),
+		@NamedQuery(name = "events.byName", query = "Select e from Events e where e.name = :name")
 })
 
 public class Event {
@@ -25,6 +28,7 @@ public class Event {
 	private String name;
 	private String about;
 	private Boolean charity:
+	private Boolean haveSponsor;
 	
 	
 	@Id
