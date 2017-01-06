@@ -1,13 +1,11 @@
-package com.example.springdemo.domain;
+package com.example.shdemo.domain;
 
-import com.example.springdemo.domain.Event;
-import com.example.springdemo.domain.Sponsor;
+import com.example.shdemo.domain.Event;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,9 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Table;
 
+@Table(name="Sponsor")
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "sponsor.byBranch", query = "Select s from Sponsor s where s.branch = :branch"),
@@ -27,6 +25,8 @@ import javax.persistence.TemporalType;
 })
 public class Sponsor {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	private String about;

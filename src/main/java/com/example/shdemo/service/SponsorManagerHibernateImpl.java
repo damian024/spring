@@ -1,4 +1,4 @@
-package com.example.springdemo.service;
+package com.example.shdemo.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.springdemo.domain.Event;
-import com.example.springdemo.domain.Sponsor;
+import com.example.shdemo.domain.Event;
+import com.example.shdemo.domain.Sponsor;
 
 
 @Component
 @Transactional
 public class SponsorManagerHibernateImpl implements SponsorManager{
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -127,11 +128,11 @@ public class SponsorManagerHibernateImpl implements SponsorManager{
 	public void deleteSponsor(Sponsor sponsor) {
 		sponsor = (Sponsor) sessionFactory.getCurrentSession().get(Sponsor.class,sponsor.getId());
 	// lazy loading here
-		for (Event event : sponsor.getEvents()) {
+		//for (Event event : sponsor.getEvents()) {
 			//sessionFactory.getCurrentSession().delete(event);
 			/*car.setSold(false);
 			sessionFactory.getCurrentSession().update(car);*/
-		}
+		//}
 		
 		sessionFactory.getCurrentSession().delete(sponsor);
 	}

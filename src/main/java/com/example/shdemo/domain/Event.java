@@ -1,30 +1,27 @@
-package com.example.springdemo.domain;
+package com.example.shdemo.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+@Table(name="Event")
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "events.charity", query = "Select e from Events e where e.charity = true"),
-		@NamedQuery(name = "events.all", query = "Select e from Events e"),
-		@NamedQuery(name = "events.byId", query = "Select e from Events e where e.id = :id"),
-		@NamedQuery(name = "events.byName", query = "Select e from Events e where e.name = :name"),
-		@NamedQuery(name = "events.byAbout", query = "Select e from Events e where e.about = :about")
+		@NamedQuery(name = "event.charity", query = "Select e from Event e where e.charity = true"),
+		@NamedQuery(name = "event.all", query = "Select e from Event e"),
+		@NamedQuery(name = "event.byId", query = "Select e from Event e where e.id = :id"),
+		@NamedQuery(name = "event.byName", query = "Select e from Event e where e.name = :name"),
+		@NamedQuery(name = "event.byAbout", query = "Select e from Event e where e.about = :about")
 })
 
 public class Event {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	private String about;
