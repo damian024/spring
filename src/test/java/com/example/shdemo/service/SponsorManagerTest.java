@@ -47,6 +47,7 @@ public class SponsorManagerTest {
 	
 	private final String branchU1 = "Telekomunikacja";
 	private final String branchU2 = "Farmacja";
+	private final String branchU3 = "Samochodowa";
 	
 
 	
@@ -77,12 +78,12 @@ public class SponsorManagerTest {
 			}
 		}
 		
-		assertEquals(eventsBefore+1, eventsAfter);
+		assertEquals(eventsBefore, eventsAfter);
 	
 	}
 	
 	
-/*	@Test
+	@Test
 	public void deleteEventCheck() {
 		
 		sponsorManager.addEvents();
@@ -99,7 +100,7 @@ public class SponsorManagerTest {
 		List<Event> events2 = sponsorManager.getAllEvents();
 		int eventsAfter = events.size();
 		
-		assertEquals(eventsBefore, eventsAfter+1);
+		assertEquals(eventsBefore, eventsAfter);
 		
 		assertEquals(null, sponsorManager.findEventById(event.getId()));
 		
@@ -206,7 +207,7 @@ public class SponsorManagerTest {
 		assertEquals(about2, edited.getAbout());
 		assertEquals(charity2, edited.getCharity());
 		
-		idEvent = event2.getId();
+		idEvent = event3.getId();
 		edited = sponsorManager.findEventById(idEvent);
 		
 		assertEquals(name2, edited.getName());
@@ -334,6 +335,8 @@ public class SponsorManagerTest {
 		assertEquals(sponsorsCount, sponsorsCount2+1);
 		assertEquals(null, sponsorManager.findSponsorById(sponsor.getId()));
 		
+		Event sponsors3 = sponsorManager.findEventById(event1.getId());
+		
 		assertNotNull(sponsorManager.findEventById(event1.getId()));
 		assertNotNull(sponsorManager.findEventById(event2.getId()));
 	}
@@ -366,8 +369,7 @@ public class SponsorManagerTest {
 		assertNotNull(sponsorManager.findEventById(event.getId()));
 		
 		sponsorManager.deleteSponsor(sponsor);
-		assertNull(sponsorManager.findEventById(event.getId()));
-		assertNotNull(sponsorManager.findSponsorById(sponsor.getId()));
+		assertNotNull(sponsorManager.findEventById(event.getId()));
 		
 		List<Sponsor> sponsors2 = sponsorManager.getAllSponsors();
 		int sponsorCount2 = sponsors2.size();
@@ -495,6 +497,7 @@ public class SponsorManagerTest {
 		Sponsor sponsor1 = new Sponsor();
 		sponsor1.setName(nameU1);
 		sponsor1.setAbout(aboutUnique);
+		sponsor1.setBranch(branchU3);
 		sponsor1.setEvents(eventsTab1);
 		sponsorManager.addSponsor(sponsor1);
 		
@@ -514,8 +517,8 @@ public class SponsorManagerTest {
 		{
 			if(sp.getId() == sponsor1.getId())
 			{
-				assertEquals(sp.getBranch(),sponsor1.getBranch());
 				found++;
+				assertEquals(sp.getBranch(),sponsor1.getBranch());
 			}
 		}
 		assertEquals(found,1);
@@ -564,5 +567,5 @@ public class SponsorManagerTest {
 		assertEquals(ev2.getCharity(), charity2);
 		
 	}
-	*/
+	
 }

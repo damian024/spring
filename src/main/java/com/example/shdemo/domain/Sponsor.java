@@ -61,7 +61,7 @@ public class Sponsor {
 		return branch;
 	}
 	// Be careful here, both with lazy and eager fetch type
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.DETACH, fetch=FetchType.LAZY)
 	public List<Event> getEvents() {
 		return events;
 	}
