@@ -109,8 +109,8 @@ public class SponsorManagerHibernateImpl implements SponsorManager{
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Event> findEventByName(String name) {
-		return sessionFactory.getCurrentSession().getNamedQuery("event.byName").setString("name", name).list();
+	public List<Event> findEventByAbout(String about) {
+		return sessionFactory.getCurrentSession().getNamedQuery("event.byAbout").setString("about", about).list();
 	}
 	
 	

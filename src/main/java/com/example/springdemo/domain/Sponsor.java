@@ -57,7 +57,7 @@ public class Sponsor {
 	public void setBranch(String branch){
 		this.branch = branch;
 	}
-	public String getBranch(String branch){
+	public String getBranch(){
 		return branch;
 	}
 	// Be careful here, both with lazy and eager fetch type
