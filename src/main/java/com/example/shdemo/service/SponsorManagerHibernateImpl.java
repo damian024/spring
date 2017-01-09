@@ -14,7 +14,7 @@ import com.example.shdemo.domain.Sponsor;
 
 @Component
 @Transactional
-public class SponsorManagerHibernateImpl implements SponsorManager{
+public class SponsorManagerHibernateImpl implements SponsorManager2{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
