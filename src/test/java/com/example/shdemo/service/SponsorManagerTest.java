@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SponsorManagerTest {
 	
 	@Autowired
-	SponsorManager sponsorManager;
+	SponsorManager2 sponsorManager;
 	
 	private final String name1 = "Orkiestra swiatecznej pomocy";
 	private final String name2 = "Mecz charytatywny";
